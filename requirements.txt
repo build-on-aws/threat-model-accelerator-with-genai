@@ -1,0 +1,7 @@
+streamlit
+boto3
+pandas
+numpy
+s3fs
+st-files-connection
+matplotlib
