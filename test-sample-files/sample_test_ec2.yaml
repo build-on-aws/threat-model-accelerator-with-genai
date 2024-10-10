@@ -1,0 +1,63 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Security Chaos GameDay - Team
+
+Parameters:
+  LatestAmiId:
+    Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
+    Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2'
+  RandId:
+    Type: String
+    Default: stack101-a6d
+    
+Resources: 
+  PublicSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: !Join ['', [!Ref RandId, "-public-sg101"]]
+      GroupDescription: "Security group for EC2 in public subnet"
+      VpcId: !GetAtt ResourceLookup.VpcId
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: '80'
+        ToPort: '80'
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: '3389'
+        ToPort: '3389'
+        CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+      - CidrIp: 0.0.0.0/0
+        Description: Allow all outbound traffic by default
+        IpProtocol: "-1"
+      Tags:
+        - Key: name
+          Value: Unicorn-General-Security-Group
+  WebAppOnEC2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref LatestAmiId
+      InstanceType: 't2.nano'
+      UserData: !Base64
+        Fn::Join:
+        - "\n"
+        - - '#!/bin/bash -xe'
+          - 'yum update -y'
+          - 'yum install -y httpd'
+          - 'echo "<html><body><h1>This is our brand new web app</h1><p>Something is still missing but not too bad for a start</p></body></html>" > /var/www/html/index.html'
+          - 'service httpd start'
+      SecurityGroupIds:
+        - Ref: PublicSecurityGroup
+      Tags:
+        - Key: Name
+          Value: Reference Quest Web App
+  DeveloperUser:
+    Type: 'AWS::IAM::User'
+    Properties:
+        UserName: !Join ['', [!Ref RandId, "-ReferenceDeveloper" ]]
+        ManagedPolicyArns:
+           - 'arn:aws:iam::aws:policy/AdministratorAccess'
+  AccessKeys:
+    Type: AWS::IAM::AccessKey
+    Properties: 
+      UserName:  
+        Ref: DeveloperUser
