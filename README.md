@@ -8,8 +8,11 @@
 
 ### Note
 
-If you want to access full version of the solution guidance, please view the following AWS Community blog post:
-[XXXXXX]
+* If you want to access full version of the solution guidance, please view the following AWS Community blog post:
+[XXXXXXXXXXXXXXXXXXXXXX]
+
+* Watch this video to help you install the Threat Model Mate web app:
+https://youtu.be/drSHpXuSkOc
 
 ### Prepare the environment on your local laptop 
 
@@ -23,6 +26,17 @@ Following commands assume you use MAC OS, with Python3 and pip3 installed.
 
 * Step 3: Run the Steamlit web app
 `streamlit run app-tm.py`
+
+## Common issue
+
+**Question** When I execute the web app, I've got following error. Why?
+```ERROR: Can't invoke 'anthropic.claude-3-sonnet-20240229-v1:0'. Reason: An error occurred (AccessDeniedException) when calling the InvokeModel operation: You don't have access to the model with the specified model ID.```
+
+**Answer** 
+* This was caused by lacking temporary credentials in your command line tool when running `streamlit run app-tm.py`.
+* Please refer to following docs to provide temporary credentials (e.g. )
+** [Use temporary credentials with AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html)
+** [GetSessionToken](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetSessionToken.html)
 
 ## Security
 
