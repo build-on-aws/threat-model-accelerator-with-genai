@@ -27,6 +27,12 @@ Following commands assume you use MAC OS, with Python3 and pip3 installed.
 * Step 3: Run the Steamlit web app
 `streamlit run app-tm.py`
 
+## Solution architect view
+![Solution architect view](/images/solution_topology.png "Solution architect view.")
+
+## Web app GUI view
+![Web app GUI view](/images/threat-modeling-mate-1.png "Web app GUI view.")
+
 ## Common issue
 
 **Question** When I execute the web app, I've got following error. Why?
@@ -35,8 +41,10 @@ Following commands assume you use MAC OS, with Python3 and pip3 installed.
 **Answer** 
 * This was caused by lacking temporary credentials in your command line tool when running `streamlit run app-tm.py`.
 * Please refer to following docs to provide temporary credentials (e.g. )
-** [Use temporary credentials with AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html)
-** [GetSessionToken](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetSessionToken.html)
+    1. [Use temporary credentials with AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html)
+    2. [GetSessionToken](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetSessionToken.html)
+
+
 
 ## Security
 
