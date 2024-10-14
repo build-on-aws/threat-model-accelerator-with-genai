@@ -9,6 +9,7 @@
 ### Note
 
 * If you want to access full version of the solution guidance, please view the following AWS Community blog post:
+
 https://community.aws/content/2nEM8sepo2qQXXH1cVJYnt4rpiK/accelerate-your-threat-modeling-with-genai
 
 * Watch this video to help you install the Threat Model Mate web app:
