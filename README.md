@@ -5,6 +5,7 @@
 * You may follow instructions below to quickly launch a web app for threat modeling accelerator
 * What it does is to allow you input application template files to automatically generate a threat model baseline for your app
 * Behind the scenes the web app interact with LLM powered by [Amazon Bedrock](https://aws.amazon.com/bedrock/)
+* Please provide feedback through [issue](https://github.com/build-on-aws/threat-model-accelerator-with-genai/issues).
 
 ### Note
 
